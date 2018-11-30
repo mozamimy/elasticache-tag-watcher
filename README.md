@@ -16,7 +16,7 @@ echo '{}' | ec sam local invoke -t template.example.yml ElastiCacheTagWatcher
 ## Build a package for release
 
 ```
-tar zcvf pkg/lambda-elasticache-tag-watcher.zip --exclude .git/ .
+tar zcvf pkg/lambda-elasticache-tag-watcher.tar.gz --exclude .git/ .
 ```
 
 ## License
