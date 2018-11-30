@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: 'An AWS Lambda function that publishes a message to an SNS topic when an ElastiCache instance without specified tags is found.'
+Resources:
+  ElastiCacheTagWatcher:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: 'elasticache-tag-watcher'
+      Handler: 'handler.lambda_handler'
+      MemorySize: 128
+      Role: 'WRITE YOUR LAMBDA EXECUTION ROLE'
+      Runtime: 'ruby2.5'
+      Timeout: 30
+      Environment:
+        Variables:
+          AWS_REGION: 'us-east-1' # required
+          ACCOUNT_ID: 'xxxxxxxxxxxxx' # required
+          TAG: 'Project' # required
+          SNS_TOPIC_ARN: 'arn:aws:sns:us-east-1:xxxxxxxxxxxx:yyyyyyyyyyyy' # required
+          SNS_SUBJECT: '*Attach Project tag please!*' # optional
+          # The attributes are assumed to used by lambda-slack-notifier.
+          # https://github.com/mozamimy/lambda-slack-notifier
+          # (optional)
+          SNS_MESSAGE_ATTRIBUTES: |
+
+            {
+              "Channel": {
+                "data_type": "String",
+                "string_value": "#infra"
+              },
+              "IconEmoji": {
+                "data_type": "String",
+                "string_value": ":3oko:"
+              },
+              "UserName": {
+                "data_type": "String",
+                "string_value": "lambda-elasticache-tag-watcher"
+              },
+              "Color": {
+                "data_type": "String",
+                "string_value": "warning"
+              }
+            }
