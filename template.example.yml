@@ -22,7 +22,6 @@ Resources:
           # https://github.com/mozamimy/lambda-slack-notifier
           # (optional)
           SNS_MESSAGE_ATTRIBUTES: |
-
             {
               "Channel": {
                 "data_type": "String",
