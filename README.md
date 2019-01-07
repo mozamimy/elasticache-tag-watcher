@@ -1,4 +1,4 @@
-# lambda-elasticache-tag-watcher
+# elasticache-tag-watcher
 
 ## About
 
@@ -16,7 +16,7 @@ echo '{}' | ec sam local invoke -t template.example.yml ElastiCacheTagWatcher
 ## Build a package for release
 
 ```
-zip -r pkg/lambda-elasticache-tag-watcher.zip ./
+zip -r pkg/elasticache-tag-watcher.zip ./
 ```
 
 ## License
